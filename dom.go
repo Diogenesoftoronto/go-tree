@@ -36,24 +36,41 @@ func newNode (name string, parent *Node, children []*Node) *Node {
 		node.name = name
     fmt.Println(node)
     return &node
-}
+	}
 
 // add error handling for functions at some point
-func hasElements (slice []string) bool {
+func strhas (slice []string) bool {
 	return len(slice) < 1
 }
 
+func strpop (slice []string) []string {
+	return slice[:len(slice)-1]
+}
 
+func (slice nodeSlice) empty() bool {
+	return len(slice) < 1
+}
+
+func (slice nodeSlice) pop()  nodeSlice {
+	return slice[:len(slice)-1]
+}
+
+type nodeSlice []Node
+
+type tree interface {
+	pop() nodeSlice
+	empty() bool
+}
 
 // returns a node and an interface on a node
 func bfs (nodePointer *Node, find string) *Node {
 	node := *nodePointer
 	var found Node
 	visited := make(map[string]bool)
-	queue := []Node{}
+	queue := []string{}
 	visited[node.name] = true
-	queue = append(queue, node)
-	for !hasElements() {
+	queue = append(queue, node.name)
+	for !strhas(queue) {
 		
 	}
 
