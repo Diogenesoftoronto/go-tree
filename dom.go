@@ -39,12 +39,23 @@ func newNode (name string, parent *Node, children []*Node) *Node {
 	}
 
 // add error handling for functions at some point
-func strhas (slice []string) bool {
+func strhas (slicePointer *[]string) bool {
+	slice := *slicePointer
 	return len(slice) < 1
 }
 
-func strpop (slice []string) []string {
-	return slice[:len(slice)-1]
+func strpop (slicePointer *[]string) string {
+	slice := *slicePointer
+	result := slice[len(slice) - 1]
+	slice = slice[:len(slice) - 1]
+	return result
+}
+
+func strshift (slicePointer *[]string) string {
+	slice := *slicePointer 
+	result := slice[0]
+	slice = slice[1:]
+	return result
 }
 
 func (slice nodeSlice) empty() bool {
@@ -70,8 +81,8 @@ func bfs (nodePointer *Node, find string) *Node {
 	queue := []string{}
 	visited[node.name] = true
 	queue = append(queue, node.name)
-	for !strhas(queue) {
-		
+	for !strhas(&queue) {
+		m := strshift(&queue)
 	}
 
 	return &found
