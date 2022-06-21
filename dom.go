@@ -68,13 +68,14 @@ func (slice nodeSlice) pop()  nodeSlice {
 
 type nodeSlice []Node
 
-type tree interface {
+type treeNode interface {
 	pop() nodeSlice
 	empty() bool
 }
 
 // returns a node and an interface on a node
-func bfs (nodePointer *Node, find string) *Node {
+func bfs (nodePointer *Node, treePointer *map[string]Node, find string) *Node {
+	tree := *treePointer
 	node := *nodePointer
 	var found Node
 	visited := make(map[string]bool)
@@ -83,6 +84,11 @@ func bfs (nodePointer *Node, find string) *Node {
 	queue = append(queue, node.name)
 	for !strhas(&queue) {
 		m := strshift(&queue)
+		fmt.Sprintf("%s",m)
+		for _, nodeP := range tree[m].children {
+			_, ok := 
+			if nodeP 
+		}
 	}
 
 	return &found
@@ -104,4 +110,8 @@ func (nodePointer *Node) makeTree() *Node {
 
 func (nodePointer *Node) sortTree() *Node {
 	return nodePointer
+}
+
+type Tree struct {
+	tree map[string]Node	
 }
