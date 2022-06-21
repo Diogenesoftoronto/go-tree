@@ -37,6 +37,15 @@ func newNode (name string, parent *Node, children []*Node) *Node {
     fmt.Println(node)
     return &node
 }
+
+func hasElements (slice []string) bool {
+	return len(slice) < 1
+}
+
+type tables interface {
+	hasElements() bool
+}
+
 // returns a node and an interface on a node
 func bfs (node *Node, find string) *Node {
 	var found Node
@@ -44,7 +53,7 @@ func bfs (node *Node, find string) *Node {
 	queue := []Node{}
 	visited[`%s`, node] = true
 	queue = append(queue, node)
-	for !queue.hasElements() {
+	for !hasElements() {
 
 	}
 
