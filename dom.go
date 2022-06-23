@@ -115,3 +115,5 @@ func (nodePointer *Node) sortTree() *Node {
 type Tree struct {
 	tree map[string]Node	
 }
+//  when using pointers you cannot store the value in another variable. 
+// Doing this dereferences it and does not mutate the value at that point.
